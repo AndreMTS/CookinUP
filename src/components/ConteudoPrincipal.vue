@@ -1,9 +1,9 @@
 <template>
   <main class="conteudo-principal">
-    <section v-if="ingredientes.length">
+    <section>
       <span class="subtitulo-lg sua-lista-texto"> Sua lista: </span>
 
-      <ul class="ingredientes-sua-lista">
+      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
         <li
           v-for="ingrediente in ingredientes"
           :key="ingrediente"
@@ -12,20 +12,21 @@
           {{ ingrediente }}
         </li>
       </ul>
-    </section>
       <p v-else class="paragrafo lista-vazia">
         <img src="../assets/icones/lista-vazia.svg" alt="Ícone de pesquisa" />
         Sua lista está vazia, selecione ingredientes para iniciar.
       </p>
+    </section>
+    <selecionar-igredientes />
   </main>
 </template>
 <script>
+import SelecionarIgredientes from "./SelecionarIgredientes.vue";
 export default {
+  components: { SelecionarIgredientes },
   data() {
     return {
-      ingredientes: [
-        // 'Alho','Oregano','ovo'
-      ],
+      ingredientes: ["Alho", "Oregano", "ovo"],
     };
   },
 };
