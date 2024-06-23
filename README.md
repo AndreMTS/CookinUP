@@ -1,5 +1,4 @@
 # vue-project-Cookin'UP
-![image](https://github.com/AndreMTS/CookinUP/assets/60296220/7fcadc17-34e5-483e-b0a9-3759f369e0e9)
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -39,3 +38,4 @@ npm run dev
 ```sh
 npm run build
 ```
+![image](https://github.com/AndreMTS/CookinUP/assets/60296220/7fcadc17-34e5-483e-b0a9-3759f369e0e9)
