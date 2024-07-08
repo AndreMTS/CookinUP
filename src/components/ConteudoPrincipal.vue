@@ -9,7 +9,7 @@
           :key="ingrediente"
           class="ingrediente"
         >
-          {{ ingrediente }}
+           <Tag :texto="ingrediente" />
         </li>
       </ul>
       <p v-else class="paragrafo lista-vazia">
@@ -22,8 +22,10 @@
 </template>
 <script>
 import SelecionarIgredientes from "./SelecionarIgredientes.vue";
+import Tag from './Tag.vue';
+
 export default {
-  components: { SelecionarIgredientes },
+  components: { SelecionarIgredientes, Tag },
   data() {
     return {
       ingredientes: ["Alho", "Oregano", "ovo"],
@@ -59,17 +61,6 @@ export default {
   flex-wrap: wrap;
 }
 
-.ingrediente {
-  display: inline-block;
-  border-radius: 0.5rem;
-  min-width: 4.25rem;
-  padding: 0.5rem;
-  text-align: center;
-  transition: 0.2s;
-  color: var(--creme, #fffaf3);
-  background: var(--coral, #f0633c);
-  font-weight: 700;
-}
 
 .lista-vazia {
   display: flex;
