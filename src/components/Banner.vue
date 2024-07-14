@@ -1,7 +1,7 @@
 <template>
   <header class="banner">
     <div class="apresentacao">
-      <img src="../assets/images/" alt="" class="logo" />
+      <img src="/images/logo.svg" alt="" class="logo" />
       <p class="cabecalho-lg frase-cabecalho">
         <span class="texto-verde">Um banquete de ideias para </span>
         despertar o chef que há em você!
@@ -12,7 +12,7 @@
       </p>
     </div>
     <img
-      src="../assets/images/foto-banner.png"
+      src="/images/foto-banner.png"
       class="foto-banner"
       alt="Foto de uma mulher conzinhado"
       srcset=""

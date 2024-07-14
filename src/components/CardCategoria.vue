@@ -10,7 +10,7 @@
     </header>
     <ul class="categoria__ingredientes">
       <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-        <Tag :texto="ingrediente" />
+        <TagSelecionavel :ingrediente="ingrediente" />
       </li>
     </ul>
   </article>
@@ -20,21 +20,22 @@
 <script lang="ts">
 import type { PropType } from "vue";
 import type ICategorias from "../interfaces/ICategoria";
-import Tag from './Tag.vue';
+import TagSelecionavel from './TagSelecionavel.vue';
+
 export default {
-  components: { Tag },
+  components: { TagSelecionavel },
   props: {
     categoria: { type: Object as PropType<ICategorias>, required: true },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .categoria {
   width: 19.5rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: var(--branco, #fff);
+  background: var(--branco, #FFF);
   box-shadow: 4px 4px 10px 0px rgba(68, 68, 68, 0.05);
   height: 100%;
 
@@ -57,7 +58,7 @@ export default {
 
 .categoria__nome {
   text-align: center;
-  color: var(--verde-medio, #3d6d4a);
+  color: var(--verde-medio, #3D6D4A);
   font-weight: 700;
 }
 
@@ -66,19 +67,5 @@ export default {
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-}
-
-.categoria__ingredientes li {
-  background-color: #efefef;
-  padding: 8px;
-  border-radius: 8px;
-}
-
-.categoria__ingredientes li:hover {
-  background-color: #f0633c;
-  color: #efefef;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
 }
 </style>
