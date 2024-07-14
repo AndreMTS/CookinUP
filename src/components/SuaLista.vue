@@ -7,7 +7,7 @@
       :key="ingrediente"
       class="ingrediente"
     >
-      <tag :texto="ingrediente" />
+      <Tag :texto="ingrediente" ativa />
     </li>
   </ul>
   <p v-else class="paragrafo lista-vazia">
@@ -31,15 +31,10 @@ export default {
 
 <style scoped>
 .sua-lista-texto {
-  color: var(--coral, #f0633c);
+  color: var(--coral, #F0633C);
   display: block;
   text-align: center;
   margin-bottom: 1.5rem;
-}
-.ingrediente:hover {
-background-color: #c95433;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
 }
 
 .ingredientes-sua-lista {
@@ -56,21 +51,7 @@ background-color: #c95433;
   flex-wrap: wrap;
   gap: 0.25rem;
 
-  color: var(--coral, #f0633c);
+  color: var(--coral, #F0633C);
   text-align: center;
-}
-
-@media only screen and (max-width: 1300px) {
-  .conteudo-principal {
-    padding: 5rem 3.75rem;
-    gap: 3.5rem;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .conteudo-principal {
-    padding: 4rem 1.5rem;
-    gap: 4rem;
-  }
 }
 </style>
