@@ -11,7 +11,7 @@
     </li>
   </ul>
   <p v-else class="paragrafo lista-vazia">
-    <img src="./icones/lista-vazia.svg" alt="Ícone de pesquisa" />
+    <img src="/images/icones/lista-vazia.svg" alt="Ícone de pesquisa" />
     Sua lista está vazia, selecione ingredientes para iniciar.
   </p>
 </template>
@@ -21,10 +21,8 @@ import Tag from './Tag.vue';
 
 export default {
   components: { Tag },
-  setup() {
-    return {
-      ingredientes: ["Alho", "Oregano", "ovo"],
-    };
+  props: {
+    ingredientes: { type: Array }
   },
 };
 </script>

@@ -1,22 +1,49 @@
 <template>
   <main class="conteudo-principal">
     <section>
-      <SuaLista />
+      <SuaLista :ingredientes="ingredientes" />
     </section>
-    <SelecionarIgredientes />
+    <KeepAlive include="SelecionarIngredientes">
+      <SelecionarIngredientes
+        v-if="conteudo === 'SelecionarIngredientes'"
+        @adicionar-ingrediente="adicionarIngrediente"
+        @remover-ingrediente="removerIngrediente"
+        @buscarReceita="navegar('MostrarReceitas')"
+      />
+      <MostrarReceitas
+        v-else-if="conteudo === 'MostrarReceitas'"
+        @editar-receitas="navegar('SelecionarIngredientes')"
+      />
+    </KeepAlive>
   </main>
 </template>
-<script>
-import SelecionarIgredientes from "./SelecionarIgredientes.vue";
+<script lang="ts">
+import SelecionarIngredientes from "./SelecionarIngredientes.vue";
 import SuaLista from "./SuaLista.vue";
+import MostrarReceitas from "./MostrarReceitas.vue";
+
+type Pagina = "SelecionarIngredientes" | "MostrarReceitas";
 
 export default {
-  components: { 
-    SelecionarIgredientes,
-    SuaLista
-    },
   data() {
-    return {};
+    return {
+      ingredientes: [] as string[],
+      conteudo: "SelecionarIngredientes" as Pagina,
+    };
+  },
+  components: { SelecionarIngredientes, SuaLista, MostrarReceitas },
+  methods: {
+    adicionarIngrediente(ingrediente: string) {
+      this.ingredientes.push(ingrediente);
+    },
+    removerIngrediente(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(
+        (iLista) => ingrediente !== iLista
+      );
+    },
+    navegar(pagina: Pagina) {
+      this.conteudo = pagina;
+    },
   },
 };
 </script>
