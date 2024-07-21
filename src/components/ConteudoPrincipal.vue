@@ -7,28 +7,29 @@
   </main>
 </template>
 <script lang="ts">
+import { ref } from 'vue';
 import SelecionarIgredientes from "./SelecionarIgredientes.vue";
-import SuaLista from "./SuaLista.vue";
+import SuaLista from './SuaLista.vue';
 
 export default {
-  components: { 
-    SelecionarIgredientes,
-    SuaLista
-    },
-  data() {
+  setup() {
+    const ingredientes = ref<string[]>([]);
+
+    function adicionarIngrediente(ingrediente: string) {
+      ingredientes.value.push(ingrediente)
+    }
+    function removerIngrediente(ingrediente: string) {
+      ingredientes.value = ingredientes.value.filter(iLista => ingrediente !== iLista);
+    }
+
     return {
-      ingredientes: [] as string[],
-    };
+      ingredientes,
+      adicionarIngrediente,
+      removerIngrediente
+    }
   },
-  methods: {
-    adicionarIngrediente(ingrediente: string) {
-      this.ingredientes.push(ingrediente)
-    },
-    removerIngrediente(ingrediente: string) {
-  this.ingredientes = this.ingredientes.filter((lista: string) => ingrediente !== lista);
+  components: { SelecionarIgredientes, SuaLista },
 }
-  }
-};
 </script>
 
 <style scoped>
