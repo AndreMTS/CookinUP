@@ -1,12 +1,12 @@
 <template>
   <main class="conteudo-principal">
     <section>
-      <SuaLista />
+      <SuaLista :ingredientes="ingredientes" />
     </section>
-    <SelecionarIgredientes />
+    <SelecionarIgredientes  @adicionar-ingrediente="adicionarIngrediente" @remover-ingrediente="removerIngrediente"/>
   </main>
 </template>
-<script>
+<script lang="ts">
 import SelecionarIgredientes from "./SelecionarIgredientes.vue";
 import SuaLista from "./SuaLista.vue";
 
@@ -16,8 +16,18 @@ export default {
     SuaLista
     },
   data() {
-    return {};
+    return {
+      ingredientes: [] as string[],
+    };
   },
+  methods: {
+    adicionarIngrediente(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
+    },
+    removerIngrediente(ingrediente: string) {
+  this.ingredientes = this.ingredientes.filter((lista: string) => ingrediente !== lista);
+}
+  }
 };
 </script>
 

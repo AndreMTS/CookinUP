@@ -7,7 +7,11 @@
     </p>
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.nome">
-        <CardCategoria :categoria="categoria" />
+       <CardCategoria
+          :categoria="categoria"
+         @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+         @remover-ingrediente="$emit('removerIngrediente', $event)"
+        />
       </li>
     </ul>
 
@@ -18,8 +22,7 @@
 </template>
 <script>
 import { obterCategorias } from "@/http/index";
-import CardCategoria from "@/components/CardCategoria.vue";
-
+import CardCategoria from './CardCategoria.vue'
 export default {
   components: { CardCategoria },
   data() {
@@ -27,6 +30,7 @@ export default {
       categorias: [],
     };
   },
+  emits:['adicionarIngrediente','removerIngrediente'],
   async created() {
     this.categorias = await obterCategorias();
   },
