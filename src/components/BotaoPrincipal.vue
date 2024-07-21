@@ -1,6 +1,6 @@
 <template>
   <button class="paragrafo-lg botao-principal">
-    Buscar Receitas
+   {{ texto }}
   </button>
 </template>
 

@@ -3,33 +3,49 @@
     <section>
       <SuaLista :ingredientes="ingredientes" />
     </section>
-    <SelecionarIgredientes  @adicionar-ingrediente="adicionarIngrediente" @remover-ingrediente="removerIngrediente"/>
+    <KeepAlive include="SelecionarIngredientes">
+      <SelecionarIngredientes
+        v-if="conteudo === 'SelecionarIngredientes'"
+        @adicionar-ingrediente="adicionarIngrediente"
+        @remover-ingrediente="removerIngrediente"
+        @buscarReceita="navegar('MostrarReceitas')"
+      />
+      <MostrarReceitas
+        v-else-if="conteudo === 'MostrarReceitas'"
+        @editar-receitas="navegar('SelecionarIngredientes')"
+      />
+    </KeepAlive>
   </main>
 </template>
 <script lang="ts">
-import { ref } from 'vue';
-import SelecionarIgredientes from "./SelecionarIgredientes.vue";
-import SuaLista from './SuaLista.vue';
+import SelecionarIngredientes from "./SelecionarIngredientes.vue";
+import SuaLista from "./SuaLista.vue";
+import MostrarReceitas from "./MostrarReceitas.vue";
+
+type Pagina = "SelecionarIngredientes" | "MostrarReceitas";
 
 export default {
-  setup() {
-    const ingredientes = ref<string[]>([]);
-
-    function adicionarIngrediente(ingrediente: string) {
-      ingredientes.value.push(ingrediente)
-    }
-    function removerIngrediente(ingrediente: string) {
-      ingredientes.value = ingredientes.value.filter(iLista => ingrediente !== iLista);
-    }
-
+  data() {
     return {
-      ingredientes,
-      adicionarIngrediente,
-      removerIngrediente
-    }
+      ingredientes: [] as string[],
+      conteudo: "SelecionarIngredientes" as Pagina,
+    };
   },
-  components: { SelecionarIgredientes, SuaLista },
-}
+  components: { SelecionarIngredientes, SuaLista, MostrarReceitas },
+  methods: {
+    adicionarIngrediente(ingrediente: string) {
+      this.ingredientes.push(ingrediente);
+    },
+    removerIngrediente(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(
+        (iLista) => ingrediente !== iLista
+      );
+    },
+    navegar(pagina: Pagina) {
+      this.conteudo = pagina;
+    },
+  },
+};
 </script>
 
 <style scoped>

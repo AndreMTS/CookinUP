@@ -18,7 +18,7 @@
     <p class="paragrafo dica">
       *Atenção: consideramos que você tem em casa sal, pimenta e água.
     </p>
-    <BotaoPrincipal />
+    <BotaoPrincipal texto="Buscar Receitas" @click="$emit('buscarReceita')"/>
   </section>
 </template>
 <script>
@@ -26,13 +26,14 @@ import { obterCategorias } from "@/http/index";
 import CardCategoria from './CardCategoria.vue'
 import BotaoPrincipal from './BotaoPrincipal.vue';
 export default {
+  name: "SelecionarIngredientes",
   components: { CardCategoria, BotaoPrincipal },
   data() {
     return {
       categorias: [],
     };
   },
-  emits:['adicionarIngrediente','removerIngrediente'],
+  emits:['adicionarIngrediente','removerIngrediente','buscarReceita'],
   async created() {
     this.categorias = await obterCategorias();
   },
